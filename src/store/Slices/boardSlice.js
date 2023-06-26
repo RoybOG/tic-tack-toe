@@ -3,7 +3,7 @@ import { BOARDSIZE } from "../../consts";
 import { checkDiagonal } from "../../HelperCode";
 
 const resetBoard = (boardArr) => {
-  boardArr.forEach((col) => col.fill(0));
+  boardArr.forEach((col) => col.fill(""));
 };
 
 const createBoard = () => {

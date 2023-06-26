@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
-import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCell,
   selectBoard,
   changeCell,
   checkSelectedDiagonal,
-} from "./store/Slices/boardSlice";
+} from "../store/Slices/boardSlice";
 import {
   CurrentPlayerWon,
   SelectCurrentPLayerID,
   nextTurn,
   resetGame,
   selectPLayers,
-} from "./store/Slices/gameSlice";
+} from "../store/Slices/gameSlice";
+import Cell from "./Cell";
+import Board from "./board";
+import { Grid } from "@mui/material";
 export default function App() {
   const dispatch = useDispatch();
 
@@ -28,14 +30,21 @@ export default function App() {
   useEffect(() => {
     dispatch(nextTurn());
     dispatch(CurrentPlayerWon());
-    dispatch(nextTurn());
-    dispatch(CurrentPlayerWon());
-    dispatch(resetGame());
+    // dispatch(nextTurn());
     // dispatch(CurrentPlayerWon());
-    // dispatch(changeCell(0, 2, 1));
-    // dispatch(changeCell(1, 1, 1));
-    // dispatch(changeCell(2, 0, 1));
+    // dispatch(resetGame());
+    // dispatch(CurrentPlayerWon());
+    dispatch(changeCell(0, 2, b));
+    dispatch(changeCell(1, 1, b));
+    dispatch(changeCell(2, 0, b));
     console.log("effect");
   }, []);
-  return <p>{"" + b}</p>;
+  return (
+    <Grid container spacing={3}>
+      <Grid item>
+        <Board />
+      </Grid>
+      <Grid item>{b + "'s turn"}</Grid>
+    </Grid>
+  );
 }
