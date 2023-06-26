@@ -32,8 +32,7 @@ export const boardSlice = createSlice({
 });
 
 export const selectBoard = (state) => {
-  console.log(state);
-  return state.board;
+  return state.board.board;
 };
 export const selectCell = (x, y) => (state) => state.board[x][y];
 

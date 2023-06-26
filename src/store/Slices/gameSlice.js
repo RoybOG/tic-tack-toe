@@ -16,11 +16,15 @@ const createPLayerList = () => {
 const initialState = {
   players: createPLayerList(),
   numOfGames: 0,
+  changeState: true, //This is a temp fix for store not updating when a field is changed in a store, becuase it's the same place in memory, the store thinks nothings changed
 };
 
-export const SelectCurrentPlayer = (state) => {
-  console.log(state.game);
-  return state.game.players.getPointed();
+export const SelectCurrentPlayer = (gameState) => {
+  return gameState.players.getPointed();
+};
+
+const updateState = (state) => {
+  state.changeState = !state.changeState;
 };
 
 export const gameSlice = createSlice({
@@ -29,9 +33,11 @@ export const gameSlice = createSlice({
   reducers: {
     resetGame: (state) => {
       state.players.get(0);
+      updateState(state);
     },
     nextTurn: (state) => {
       state.players.getNext();
+      updateState(state);
     },
     CurrentPlayerWon: (state, aciton) => {
       //The player won with his turn
@@ -41,8 +47,9 @@ export const gameSlice = createSlice({
   },
 });
 
-export const SelectCurrentPLayerID = (state) =>
-  SelectCurrentPlayer(state).playerId;
+export const SelectCurrentPLayerID = (state) => {
+  return SelectCurrentPlayer(state.game).playerId;
+};
 
 export const selectPLayers = (state) => state.game.players;
 export const { resetGame, nextTurn, CurrentPlayerWon } = gameSlice.actions;
