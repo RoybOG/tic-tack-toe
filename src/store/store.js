@@ -1,11 +1,12 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import boardSlice from "./boardSlice";
-import gameSlice from "./gameSlice";
+import { applyMiddleware, configureStore } from "@reduxjs/toolkit";
+
+import boardSlice from "./Slices/boardSlice";
+import gameSlice from "./Slices/gameSlice";
 
 export const gameStore = configureStore({
   reducer: {
-    [boardSlice.name]: boardSlice,
-    [gameSlice.name]: gameSlice,
+    board: boardSlice,
+    game: gameSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -66,6 +66,9 @@ export class CyclicalList {
     return this.#length;
   }
 
+  get rawList() {
+    return this.#raw_list;
+  }
   toString() {
     return this.#raw_list.toString();
   }

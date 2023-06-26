@@ -6,15 +6,17 @@ import {
   selectBoard,
   changeCell,
   checkSelectedDiagonal,
-} from "./store/boardSlice";
+} from "./store/Slices/boardSlice";
+import { SelectCurrentPLayerID, selectPLayers } from "./store/Slices/gameSlice";
 export default function App() {
   const dispatch = useDispatch();
 
   const b = useSelector(checkSelectedDiagonal(2, 0, 1));
-  const s = useSelector((s) => s);
-  console.log(s);
-  // const t = useSelector(selectBoard);
-  // console.table(t);
+  // console.log(useSelector(selectPLayers));
+  // console.log(useSelector(SelectCurrentPLayerID));
+
+  const t = useSelector(selectBoard);
+  console.table(t);
   useEffect(() => {
     dispatch(changeCell(0, 2, 1));
     dispatch(changeCell(1, 1, 1));
