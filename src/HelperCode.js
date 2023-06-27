@@ -1,6 +1,6 @@
 import { BOARDSIZE } from "./consts";
 
-export const checkAllLine = (gameBoard, checkFunc) => {
+const checkAllLine = (gameBoard, checkFunc) => {
   for (let i = 0; i < BOARDSIZE; i++) {
     if (!checkFunc(gameBoard, i)) return false;
   }
