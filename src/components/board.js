@@ -39,7 +39,6 @@ export default function gameBoard() {
   return (
     <Paper
       sx={{
-        float: "left",
         p: 1,
         my: 0,
         display: "flex",

@@ -10,49 +10,57 @@ import {
   SelectCurrentPLayerID,
   nextTurn,
   resetGame,
+  selectNumOfGames,
   selectPLayers,
 } from "../store/Slices/gameSlice";
 import Cell from "./Cell";
 import Board from "./board";
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { playerMove } from "../store/store";
 import { checkForWin } from "../HelperCode";
+import ScoreBoard from "./ScoreBoard";
 export default function App() {
   const dispatch = useDispatch();
 
-  const b = useSelector(SelectCurrentPLayerID);
-  const gameBoard = useSelector(selectBoard);
-  console.log(useSelector(selectPLayers));
-  console.log(b);
-  // console.log(useSelector(selectPLayers));
-  // console.log(useSelector(SelectCurrentPLayerID));
-
-  // const t = useSelector(selectBoard);
-  // console.table(t);
-
-  useEffect(() => {
-    // dispatch(CurrentPlayerWon());
-    // dispatch(nextTurn());
-    // dispatch(CurrentPlayerWon());
-    // dispatch(resetGame());
-    // dispatch(CurrentPlayerWon());
-    // playerMove(0, 0);
-    // playerMove(1, 1);
-    // playerMove(2, 2);
-    // dispatch(resetGame());
-    // dispatch(nextTurn());
-
-    console.log("effect");
-  }, []);
+  const currentPlayerID = useSelector(SelectCurrentPLayerID);
+  const numOfGames = useSelector(selectNumOfGames);
 
   return (
     <Container maxWidth="sm">
-      <Grid container spacing={3}>
-        <Grid item>
+      <Typography variant="h1">Tic Tack Toe</Typography>
+      <Box sx={{ textAlign: "center" }}>
+        <Typography variant="h2">
+          {numOfGames > 0 ? "Game number " + (numOfGames + 1) : ""}
+        </Typography>
+        <Typography variant="h3">{currentPlayerID + "'s turn"}</Typography>
+      </Box>
+      <br />
+      <br />
+      <Box
+        sx={{
+          p: 1,
+          mx: 1,
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        {/* <Grid item sx={{ float: "left" }}> */}
+        <Box
+          sx={{
+            mx: 3,
+          }}
+        >
           <Board />
-        </Grid>
-        <Grid item>{b + "'s turn"}</Grid>
-      </Grid>
+        </Box>
+
+        <Box
+          sx={{
+            mx: 3,
+          }}
+        >
+          <ScoreBoard />
+        </Box>
+      </Box>
     </Container>
   );
 }

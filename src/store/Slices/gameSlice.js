@@ -53,5 +53,6 @@ export const SelectCurrentPLayerID = (state) => {
 
 export const selectPLayers = (state) => state.game.players;
 export const { resetGame, nextTurn, CurrentPlayerWon } = gameSlice.actions;
+export const selectNumOfGames = (state) => state.game.numOfGames;
 
 export default gameSlice.reducer;

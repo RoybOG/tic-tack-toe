@@ -32,7 +32,7 @@ export const playerMove = (rowNum, colNum) => {
 
   if (checkForWin(gameBoard, playerID, rowNum, colNum)) {
     gameStore.dispatch(CurrentPlayerWon());
-    alert(playerID + " WON");
+    alert("Player " + playerID + " WON");
     gameStore.dispatch(resetGame());
   } else {
     gameStore.dispatch(nextTurn());
