@@ -45,9 +45,9 @@ export default function ScoreBoard() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {playerList.map((playerObj) => (
+            {playerList.map((playerObj, index) => (
               <TableRow
-                key={playerObj.playerID}
+                key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">

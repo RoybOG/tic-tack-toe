@@ -14,14 +14,11 @@ export const gameStore = configureStore({
     board: boardSlice,
     game: gameSlice,
   },
-  middleware: [createLogger()],
-  /* 
-  [
-    (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: false,
-      }),
-      */
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+  // [createLogger()],
 });
 
 export const playerMove = (rowNum, colNum) => {
@@ -38,13 +35,3 @@ export const playerMove = (rowNum, colNum) => {
     gameStore.dispatch(nextTurn());
   }
 };
-/*
-export const playersTurn = (x,y)=>{
-  const currentPlayerID = SelectCurrentPLayerID(gameStore.getState())
-  const game
-  gameStore.dispatch(changeCell(x,y, currentPlayerID))
-
-
-  if(checkForWin())
-}
-*/

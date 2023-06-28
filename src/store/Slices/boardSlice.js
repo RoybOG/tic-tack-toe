@@ -41,9 +41,6 @@ export const selectBoard = (state) => {
 };
 export const selectCell = (x, y) => (state) => state.board[x][y];
 
-// export const checkSelectedDiagonal = (rowNum, colNum, playerID) => (state) =>
-//   checkDiagonal(selectBoard(state), rowNum, colNum, playerID);
-// Action creators are generated for each case reducer function
 export const { changeCell } = boardSlice.actions;
 
 export default boardSlice.reducer;

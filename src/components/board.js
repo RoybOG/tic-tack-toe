@@ -1,10 +1,3 @@
-/*
-
-export default function Board(board_props) {
-  // const {board_arr} = board_props
-  const board_arr = useSelector(selectBoard);
-*/
-
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { Paper } from "@mui/material";
@@ -31,11 +24,6 @@ export default function gameBoard() {
       </Box>
     );
   };
-  /*[
-    ["X", "O", "X"],
-    ["O", "X", "O"],
-    ["X", "O", "X"],
-  ];*/
   return (
     <Paper
       sx={{
