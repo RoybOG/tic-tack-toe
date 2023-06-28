@@ -15,7 +15,8 @@ import {
 import Cell from "./Cell";
 import Board from "./board";
 import { Container, Grid } from "@mui/material";
-import { checkForWin } from "../store/store";
+import { playerMove } from "../store/store";
+import { checkForWin } from "../HelperCode";
 export default function App() {
   const dispatch = useDispatch();
 
@@ -28,23 +29,22 @@ export default function App() {
 
   // const t = useSelector(selectBoard);
   // console.table(t);
+
   useEffect(() => {
-    // dispatch(nextTurn());
     // dispatch(CurrentPlayerWon());
     // dispatch(nextTurn());
     // dispatch(CurrentPlayerWon());
     // dispatch(resetGame());
     // dispatch(CurrentPlayerWon());
-    dispatch(changeCell(0, 2, b));
-    dispatch(changeCell(1, 1, b));
-    dispatch(changeCell(2, 0, b));
-    /*
-    if (checkForWin(gameBoard, 1, 1, b)) {
-      alert("player won");
-    }
-    */
+    // playerMove(0, 0);
+    // playerMove(1, 1);
+    // playerMove(2, 2);
+    // dispatch(resetGame());
+    // dispatch(nextTurn());
+
     console.log("effect");
   }, []);
+
   return (
     <Container maxWidth="sm">
       <Grid container spacing={3}>

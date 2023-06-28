@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { Paper } from "@mui/material";
+import { playerMove } from "../store/store";
 
 /*
 export default function Cell({ ID }) {
@@ -27,8 +28,7 @@ export default function Cell({ ID }) {
 }
 */
 
-export default function Cell({ ID }) {
-  const [playerID, setPlayerID] = useState(ID ? ID : "_");
+export default function Cell({ X, Y, ID }) {
   return (
     <Box
       sx={{
@@ -39,8 +39,16 @@ export default function Cell({ ID }) {
         textAlign: "center",
       }}
     >
-      <Paper sx={{ p: 3 }} elevation={1}>
-        {playerID}
+      <Paper
+        sx={{
+          p: 3,
+          bgcolor: "white",
+          ":hover": { bgcolor: ID ? null : "yellow" },
+        }}
+        elevation={1}
+        onClick={ID ? null : () => playerMove(X, Y)}
+      >
+        {ID ? ID : "_"}
       </Paper>
     </Box>
   );

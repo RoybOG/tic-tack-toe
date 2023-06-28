@@ -29,6 +29,11 @@ export const boardSlice = createSlice({
       prepare: (x, y, playerID) => ({ payload: { x, y, playerID } }),
     },
   },
+  extraReducers: function (builder) {
+    builder.addCase("game/resetGame", (state) => {
+      resetBoard(state.board);
+    });
+  },
 });
 
 export const selectBoard = (state) => {

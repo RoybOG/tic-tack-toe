@@ -7,28 +7,42 @@ const checkAllLine = (gameBoard, checkFunc) => {
   return true;
 };
 
-export const checkColumn = (gameBoard, columnNum, playerID) => {
+const checkColumn = (gameBoard, columnNum, playerID) => {
   const checkFunc = (gb, i) => gb[i][columnNum] === playerID;
   return checkAllLine(gameBoard, checkFunc);
 };
-
-export const checkRow = (gameBoard, rowNum, playerID) => {
+const checkRow = (gameBoard, rowNum, playerID) => {
   const checkFunc = (gb, i) => gb[rowNum][i] === playerID;
   return checkAllLine(gameBoard, checkFunc);
 };
 
-export const checkDiagonal = (gameBoard, rowNum, colNum, playerID) => {
+const checkDiagonal = (gameBoard, rowNum, colNum, playerID) => {
+  const checkEqualDiagonal = (gb, i) => gb[i][i] === playerID; //Checks one of the diagonals where the cell's X and Y are equal
+  const checkUpDiagonal = (gb, i) => gb[BOARDSIZE - i - 1][i] === playerID;
   if (rowNum === colNum) {
-    //Checks one of the diagonals the cell is on
-    const checkFunc = (gb, i) => gb[i][i] === playerID;
-    return checkAllLine(gameBoard, checkFunc);
+    if (rowNum === (BOARDSIZE - 1) / 2) {
+      //Check wheather it is the middle point. the middle cell is the only common cell between diagonals.
+      return (
+        checkAllLine(gameBoard, checkUpDiagonal) ||
+        checkAllLine(gameBoard, checkEqualDiagonal)
+      );
+    }
+    return checkAllLine(gameBoard, checkEqualDiagonal);
   } else if (rowNum + colNum === BOARDSIZE - 1) {
     //Checks the other diagonal the cell is on
-    const checkFunc = (gb, i) => gb[BOARDSIZE - i - 1][i] === playerID;
-    return checkAllLine(gameBoard, checkFunc);
+
+    return checkAllLine(gameBoard, checkUpDiagonal);
   }
 
   return false;
+};
+
+export const checkForWin = (gameBoard, CurrentplayerID, rowNum, colNum) => {
+  return (
+    checkRow(gameBoard, rowNum, CurrentplayerID) ||
+    checkColumn(gameBoard, colNum, CurrentplayerID) ||
+    checkDiagonal(gameBoard, rowNum, colNum, CurrentplayerID)
+  );
 };
 
 function mod(n, m) {

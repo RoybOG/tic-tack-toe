@@ -13,25 +13,24 @@ import Cell from "./Cell";
 import { useSelector } from "react-redux";
 import { selectBoard } from "../store/Slices/boardSlice";
 
-function Row({ RowArr }) {
-  return (
-    <Box
-      sx={{
-        p: 1,
-        mx: 1,
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
-      {RowArr.map((playerID) => (
-        <Cell ID={playerID} />
-      ))}
-    </Box>
-  );
-}
-
 export default function gameBoard() {
   const board_arr = useSelector(selectBoard);
+  const Row = ({ RowIndex }) => {
+    return (
+      <Box
+        sx={{
+          p: 1,
+          mx: 1,
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        {board_arr[RowIndex].map((playerID, CellIndex) => (
+          <Cell ID={playerID} X={RowIndex} Y={CellIndex} key={CellIndex} />
+        ))}
+      </Box>
+    );
+  };
   /*[
     ["X", "O", "X"],
     ["O", "X", "O"],
@@ -48,8 +47,8 @@ export default function gameBoard() {
       }}
       elevation={3}
     >
-      {board_arr.map((rowArr) => (
-        <Row RowArr={rowArr} />
+      {board_arr.map((rowArr, RowIndex) => (
+        <Row RowIndex={RowIndex} key={RowIndex} />
       ))}
     </Paper>
   );
